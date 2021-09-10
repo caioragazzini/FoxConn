@@ -1,4 +1,7 @@
+using AutoMapper;
 using BackEnd_FoxConn.Context;
+using BackEnd_FoxConn.DTOs.Mappings;
+using BackEnd_FoxConn.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,9 +33,18 @@ namespace BackEnd_FoxConn
         {
             services.AddCors();
 
-           
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
 
-            
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
 
             String mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<AppDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
