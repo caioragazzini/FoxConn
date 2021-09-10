@@ -12,21 +12,21 @@ namespace BackEnd_FoxConn.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Rule",
+                name: "Rules",
                 columns: table => new
                 {
-                    ruleId = table.Column<int>(type: "int", nullable: false)
+                    RuleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "varchar(54)", maxLength: 54, nullable: true)
+                    Name = table.Column<string>(type: "varchar(54)", maxLength: 54, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    active = table.Column<string>(type: "longtext", nullable: true)
+                    Active = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    modified_at = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Modified_at = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rule", x => x.ruleId);
+                    table.PrimaryKey("PK_Rules", x => x.RuleId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -46,24 +46,24 @@ namespace BackEnd_FoxConn.Migrations
                     Created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Modified_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Id_rule = table.Column<int>(type: "int", nullable: false),
-                    RuleId = table.Column<int>(type: "int", nullable: true)
+                    RulesRuleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employee", x => x.employeeId);
                     table.ForeignKey(
-                        name: "FK_Employee_Rule_RuleId",
-                        column: x => x.RuleId,
-                        principalTable: "Rule",
-                        principalColumn: "ruleId",
+                        name: "FK_Employee_Rules_RulesRuleId",
+                        column: x => x.RulesRuleId,
+                        principalTable: "Rules",
+                        principalColumn: "RuleId",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_RuleId",
+                name: "IX_Employee_RulesRuleId",
                 table: "Employee",
-                column: "RuleId");
+                column: "RulesRuleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -72,7 +72,7 @@ namespace BackEnd_FoxConn.Migrations
                 name: "Employee");
 
             migrationBuilder.DropTable(
-                name: "Rule");
+                name: "Rules");
         }
     }
 }

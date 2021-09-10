@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd_FoxConn.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210910010909_Initial")]
+    [Migration("20210910020608_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace BackEnd_FoxConn.Migrations
                         .HasMaxLength(104)
                         .HasColumnType("varchar(104)");
 
-                    b.Property<int?>("RuleId")
+                    b.Property<int?>("RulesRuleId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Salary")
@@ -52,50 +52,45 @@ namespace BackEnd_FoxConn.Migrations
 
                     b.HasKey("employeeId");
 
-                    b.HasIndex("RuleId");
+                    b.HasIndex("RulesRuleId");
 
                     b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("BackEnd_FoxConn.Models.Rule", b =>
+            modelBuilder.Entity("BackEnd_FoxConn.Models.Rules", b =>
                 {
                     b.Property<int>("RuleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ruleId");
+                        .HasColumnType("int");
 
                     b.Property<string>("Active")
-                        .HasColumnType("longtext")
-                        .HasColumnName("active");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("created_at");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("Modified_at")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("modified_at");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(54)
-                        .HasColumnType("varchar(54)")
-                        .HasColumnName("name");
+                        .HasColumnType("varchar(54)");
 
                     b.HasKey("RuleId");
 
-                    b.ToTable("Rule");
+                    b.ToTable("Rules");
                 });
 
             modelBuilder.Entity("BackEnd_FoxConn.Models.Employee", b =>
                 {
-                    b.HasOne("BackEnd_FoxConn.Models.Rule", "Rule")
+                    b.HasOne("BackEnd_FoxConn.Models.Rules", "Rules")
                         .WithMany("Employee")
-                        .HasForeignKey("RuleId");
+                        .HasForeignKey("RulesRuleId");
 
-                    b.Navigation("Rule");
+                    b.Navigation("Rules");
                 });
 
-            modelBuilder.Entity("BackEnd_FoxConn.Models.Rule", b =>
+            modelBuilder.Entity("BackEnd_FoxConn.Models.Rules", b =>
                 {
                     b.Navigation("Employee");
                 });

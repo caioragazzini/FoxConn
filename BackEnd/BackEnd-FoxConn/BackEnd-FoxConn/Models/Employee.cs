@@ -29,7 +29,7 @@ namespace BackEnd_FoxConn.Models
       
         public int Id_rule { get; set; }
        
-        public Rule Rule { get; set; }
+        public Rules Rules { get; set; }
 
     }
 }
