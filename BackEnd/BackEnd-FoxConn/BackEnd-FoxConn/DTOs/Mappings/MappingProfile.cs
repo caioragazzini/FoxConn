@@ -14,6 +14,7 @@ namespace BackEnd_FoxConn.DTOs.Mappings
         {
             CreateMap<Employee, EmployeeDTO>().ReverseMap();
             CreateMap<Rules, RulesDTO>().ReverseMap();
+
         }
     }
 }

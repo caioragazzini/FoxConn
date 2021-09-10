@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using AutoMapper;
+using BackEnd_FoxConn.DTOs;
+using BackEnd_FoxConn.Models;
+using BackEnd_FoxConn.Repository;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,36 +14,96 @@ namespace BackEnd_FoxConn.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        private readonly IUnitOfWork _uow;
+        private readonly IMapper _mapper;
+        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            _uow = unitOfWork;
+            _mapper = mapper;
+        }
+
+        [HttpGet("salarioDepartamento")]
+        public ActionResult<IEnumerable<EmployeeRulesDTO>> GetC()
+        {
+            var employee = _uow.EmployeeBll.GetSalaryDepartament().ToList();
+            
+
+            return employee;
+        }
+
+
+
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<EmployeeDTO>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var employee = _uow.EmployeeBll.Get().ToList();
+            var employeeDto = _mapper.Map<List<EmployeeDTO>>(employee);
+            return employeeDto;
         }
 
         // GET api/<EmployeeController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "ObterEmployee")]
+        public ActionResult<EmployeeDTO> Get(int id)
         {
-            return "value";
+            var employee = _uow.EmployeeBll.GetById(x => x.employeeId == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            var employeeDto = _mapper.Map<EmployeeDTO>(employee);
+            return employeeDto;
+
         }
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] EmployeeDTO employeeDto)
         {
+            var employee = _mapper.Map<Employee>(employeeDto);
+
+            _uow.EmployeeBll.Add(employee);
+            _uow.Commit();
+
+            var employeeDTO = _mapper.Map<EmployeeDTO>(employee);
+
+            return new CreatedAtRouteResult("ObterEmployee",
+                new { id = employee.employeeId }, employeeDTO);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] EmployeeDTO employeeDto)
         {
+            if (id != employeeDto.employeeId)
+            {
+                return BadRequest();
+            }
+
+            var employee = _mapper.Map<Employee>(employeeDto);
+
+            _uow.EmployeeBll.Update(employee);
+            _uow.Commit();
+            return Ok();
+
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<EmployeeDTO> Delete(int id)
         {
+            var employee = _uow.EmployeeBll.GetById(p => p.employeeId == id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            _uow.EmployeeBll.Delete(employee);
+            _uow.Commit();
+
+            var employeeDto = _mapper.Map<EmployeeDTO>(employee);
+
+            return employeeDto;
         }
     }
 }
