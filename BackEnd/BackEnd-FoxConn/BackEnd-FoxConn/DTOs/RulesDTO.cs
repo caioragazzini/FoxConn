@@ -12,7 +12,7 @@ namespace BackEnd_FoxConn.DTOs
         public int RuleId { get; set; }
 
         
-        public string Name { get; set; }
+        public string NameRule { get; set; }
 
         public string Active { get; set; }
 
@@ -20,7 +20,7 @@ namespace BackEnd_FoxConn.DTOs
 
         public DateTime Modified_at { get; set; }
 
-        public ICollection<Employee> Employee { get; set; }
+        public ICollection<EmployeeDTO> Employee { get; set; }
 
     }
 }

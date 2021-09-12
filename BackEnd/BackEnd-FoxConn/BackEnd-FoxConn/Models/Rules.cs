@@ -13,22 +13,22 @@ namespace BackEnd_FoxConn.Models
     {
         public Rules()
         {
-            Employee = new Collection<Employee>();
+            Employees = new Collection<Employees>();
         }
 
         [Key]
         public int RuleId { get; set; }
        
         [MaxLength(54)]
-        public string Name { get; set; }
+        public string NameRule { get; set; }
        
         public string Active { get; set; }
-       
+        [Required]
         public DateTime Created_at { get; set; }
-        
+        [Required]
         public DateTime Modified_at { get; set; }
         
-        public ICollection<Employee> Employee { get; set; }
+        public ICollection<Employees> Employees { get; set; }
 
     }
 }

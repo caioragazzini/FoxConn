@@ -3,14 +3,16 @@ using System;
 using BackEnd_FoxConn.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackEnd_FoxConn.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210911201644_AjusteDados04")]
+    partial class AjusteDados04
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +72,7 @@ namespace BackEnd_FoxConn.Migrations
                     b.Property<DateTime>("Modified_at")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("NameRule")
+                    b.Property<string>("Name")
                         .HasMaxLength(54)
                         .HasColumnType("varchar(54)");
 

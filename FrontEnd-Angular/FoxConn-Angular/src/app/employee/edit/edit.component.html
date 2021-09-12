@@ -1,1 +1,77 @@
-<p>edit works!</p>
+<div class="container">
+    <h1> Editar Funcionario</h1>  
+    <br>    
+        <a href="#" routerLink="/employee/index" class="btn btn-primary">Back</a>
+        <br>
+        <br>
+    <form class="container" [formGroup]="form" (ngSubmit)="submit()">
+  
+       
+          
+         <div class="form-group campo">         
+            <label for="name">Nome:</label>
+            
+            <input  [ngModel]=post.name
+                    formControlName="name"
+                    id="name" 
+                    type="text" 
+                 class="form-control">
+                 <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                    <div *ngIf="f.name.errors?.required">nome is required.</div>
+                </div>
+            
+        </div>   
+        <div class="form-group campo">
+            <label for="salary">Salario:</label>
+            <input  id="post.salary"  
+            [ngModel]=post.salary 
+            formControlName="salary" 
+            type="number" class="form-control">  
+            <div *ngIf="f.salary.touched && f.salary.invalid" class="alert alert-danger">
+                <div *ngIf="f.salary.errors?.required">nome is required.</div>
+            </div>          
+        </div>       
+
+        <div class="form-group campo">
+            <label for="ruleId">Departamento:</label>
+            <select class="form-control" formControlName="ruleId"  [(ngModel)]="post.ruleId">              
+                <option *ngFor="let rules of allRules | async" 
+                [selected]="rules.ruleId === post.ruleId"   
+                Value="rules.ruleId"> {{rules.nameRule}} </option>
+              </select>            
+        </div>   
+         <div class="form-group campo">
+            <label for="gender">Sexo:</label>
+            <select  class="form-control" formControlName="gender"  [(ngModel)]="post.gender" >   
+                <option disabled value="">Selecione</option>             
+                <option value="Masculino" selected="post.gender=== Masculino">Masculino</option>
+                <option value="Feminino" selected="post.gender=== Feminino">Feminino</option>
+            </select>                 
+        </div>   
+        <div class="form-group campo">
+            <label for="active">Ativo/Inativo:</label>
+            <select  class="form-control" formControlName="active"  [(ngModel)]="post.active" >  
+                <option disabled value="">Selecione</option>              
+                <option value="A" selected="post.active=== A">Ativo</option>
+                <option value="I" selected="post.active === I">Inativo</option>              
+          </select>                 
+        </div>  
+        <div class="form-group campo">
+            <label for="created_at">Data:</label>
+            <input 
+                formControlName="created_at"           
+                type="datetime-local" 
+                class="form-control"
+                
+                [(ngModel)]="post.created_at">
+           
+        </div>
+        
+        
+        <br>
+        <div class="direita">
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        </div>
+    </form>
+</div>
+

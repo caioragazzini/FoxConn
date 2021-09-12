@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BackEnd_FoxConn.Repository.EmployeeRepository
 {
-    public class EmployeeBll : Repository<Employee>, IEmployeeBll
+    public class EmployeeBll : Repository<Employees>, IEmployeeBll
     {
         public EmployeeBll(AppDbContext context) : base(context)
         {
@@ -16,12 +16,12 @@ namespace BackEnd_FoxConn.Repository.EmployeeRepository
         public List<EmployeeRulesDTO> GetSalaryDepartament()
         {
             var sql = from e in _context.Employees                     
-                      join r in _context.Rules on e.Id_rule equals r.RuleId
-                      group e by new {r.Name} into g
+                      join r in _context.Ruless on e.RuleId equals r.RuleId
+                      group e by new {r.NameRule} into g
                       select new
                       {
                           Salary = g.Sum(x=>x.Salary),
-                          Nome = g.Key.Name,
+                          Nome = g.Key.NameRule,
                       };
 
             List<EmployeeRulesDTO> sqlLista = new List<EmployeeRulesDTO>();
@@ -37,7 +37,27 @@ namespace BackEnd_FoxConn.Repository.EmployeeRepository
             return sqlLista;
         }
 
-      
+        public IEnumerable<Employees> GetFuncionarioDepartamento()
+        {
+            var employees = Get().Select(x => new Employees
+            {
+                Rules = x.Rules,
+                Active = x.Active,
+                Created_at = x.Created_at,
+                EmployeeId = x.EmployeeId,
+                Gender = x.Gender,
+                RuleId = x.RuleId,
+                Modified_at = x.Modified_at,
+                Name = x.Name,
+
+                Salary = x.Salary
+
+            });
+
+            return employees;
+        }
+
+
 
     }
 }

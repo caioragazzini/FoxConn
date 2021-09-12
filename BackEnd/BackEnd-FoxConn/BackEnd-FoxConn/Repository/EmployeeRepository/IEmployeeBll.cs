@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace BackEnd_FoxConn.Repository.EmployeeRepository
 {
-    public  interface IEmployeeBll : IRepository<Employee>
+    public  interface IEmployeeBll : IRepository<Employees>
     {
         List<EmployeeRulesDTO> GetSalaryDepartament();
+        IEnumerable<Employees> GetFuncionarioDepartamento();
 
     }
 }

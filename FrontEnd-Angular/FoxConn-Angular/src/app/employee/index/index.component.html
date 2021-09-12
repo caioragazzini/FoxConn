@@ -1,1 +1,47 @@
-<p>index works!</p>
+
+
+<div class="container">
+    <h1>CRUD Funcionario</h1>   
+    <br>
+    <br>    
+<nav class="navbar">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" placeholder="&#61442;  Pesquisar Funcionario" /> 
+</nav>
+    <table mdbTable >
+        <thead class="black white-text">
+        </thead>
+      <tr>          
+        <th width="100px">Código</th>
+        <th width="600px">Nome</th> 
+        <th width="200px">Salario</th> 
+        <th width="200px">Data</th> 
+        <th width="100px">Ativo</th>
+        <th>Action</th>   
+      </tr>
+      <tr *ngFor="let employee of allEmployee |  async | filter: searchText">
+        
+        <td>{{ employee.employeeId }}</td>
+        <td>{{ employee.name}}</td> 
+        <td>{{ employee.salary | currency : 'BRL'}}</td> 
+        <td>{{ employee.modified_at | date:"dd/MM/yyyy"}}</td>
+       
+        <td><input type="checkbox" [checked]="employee.active =='I'? false: true "></td> 
+      
+        <td  width="70px">
+          <a href="#" [routerLink]="['/employee/view/', employee.employeeId]" class="btn btn-info">View</a>
+        </td>
+        <td width="70px">
+          <a href="#" [routerLink]="['/employee/edit/', employee.employeeId]" class="btn btn-success">Edit</a>
+        </td>
+        <td width="70px">
+          <button type="button" (click)="deletePost(employee.employeeId)" class="btn btn-danger">Delete</button> 
+        </td>       
+      </tr>
+    </table>
+    <br>
+    <br>  
+    <a href="#" routerLink="/employee/create/" class="btn btn-success">Criar Novo Funcionario</a>
+
+    
+ </div>
+

@@ -11,15 +11,12 @@ namespace BackEnd_FoxConn.Context
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
 
-        public DbSet<Rules> Rules { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            
-        }
+        public DbSet<Rules> Ruless { get; set; }
+        public DbSet<Employees> Employees { get; set; }
+       
     }
 }
 

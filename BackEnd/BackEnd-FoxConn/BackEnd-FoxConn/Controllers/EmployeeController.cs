@@ -25,13 +25,19 @@ namespace BackEnd_FoxConn.Controllers
         [HttpGet("salarioDepartamento")]
         public ActionResult<IEnumerable<EmployeeRulesDTO>> GetC()
         {
-            var employee = _uow.EmployeeBll.GetSalaryDepartament().ToList();
-            
+            var employee = _uow.EmployeeBll.GetSalaryDepartament().ToList();           
 
             return employee;
         }
 
+        [HttpGet("funcionarioDepartamento")]
+        public ActionResult<IEnumerable<EmployeeDTO>> GetFuncDpto( int id)
+        {
+            var employees = _uow.EmployeeBll.GetFuncionarioDepartamento().ToList();
+            var employeesDto = _mapper.Map<List<EmployeeDTO>>(employees);
 
+            return employeesDto;
+        }
 
         // GET: api/<EmployeeController>
         [HttpGet]
@@ -46,7 +52,7 @@ namespace BackEnd_FoxConn.Controllers
         [HttpGet("{id}", Name = "ObterEmployee")]
         public ActionResult<EmployeeDTO> Get(int id)
         {
-            var employee = _uow.EmployeeBll.GetById(x => x.employeeId == id);
+            var employee = _uow.EmployeeBll.GetById(x => x.EmployeeId == id);
             if (employee == null)
             {
                 return NotFound();
@@ -60,7 +66,7 @@ namespace BackEnd_FoxConn.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] EmployeeDTO employeeDto)
         {
-            var employee = _mapper.Map<Employee>(employeeDto);
+            var employee = _mapper.Map<Employees>(employeeDto);
 
             _uow.EmployeeBll.Add(employee);
             _uow.Commit();
@@ -68,19 +74,20 @@ namespace BackEnd_FoxConn.Controllers
             var employeeDTO = _mapper.Map<EmployeeDTO>(employee);
 
             return new CreatedAtRouteResult("ObterEmployee",
-                new { id = employee.employeeId }, employeeDTO);
+                new { id = employee.EmployeeId }, employeeDTO);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] EmployeeDTO employeeDto)
         {
+            employeeDto.employeeId = id;
             if (id != employeeDto.employeeId)
             {
                 return BadRequest();
             }
 
-            var employee = _mapper.Map<Employee>(employeeDto);
+            var employee = _mapper.Map<Employees>(employeeDto);
 
             _uow.EmployeeBll.Update(employee);
             _uow.Commit();
@@ -92,7 +99,7 @@ namespace BackEnd_FoxConn.Controllers
         [HttpDelete("{id}")]
         public ActionResult<EmployeeDTO> Delete(int id)
         {
-            var employee = _uow.EmployeeBll.GetById(p => p.employeeId == id);
+            var employee = _uow.EmployeeBll.GetById(p => p.EmployeeId == id);
 
             if (employee == null)
             {

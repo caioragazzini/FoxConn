@@ -23,7 +23,7 @@ namespace BackEnd_FoxConn.DTOs
 
         public DateTime Modified_at { get; set; }
 
-        public int Id_rule { get; set; }
+        public int RuleId { get; set; }
 
         public Rules Rules { get; set; }
 

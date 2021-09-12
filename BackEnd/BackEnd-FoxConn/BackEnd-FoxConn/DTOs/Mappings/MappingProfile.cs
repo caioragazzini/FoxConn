@@ -12,7 +12,7 @@ namespace BackEnd_FoxConn.DTOs.Mappings
 
         public MappingProfile()
         {
-            CreateMap<Employee, EmployeeDTO>().ReverseMap();
+            CreateMap<Employees, EmployeeDTO>().ReverseMap();
             CreateMap<Rules, RulesDTO>().ReverseMap();
 
         }

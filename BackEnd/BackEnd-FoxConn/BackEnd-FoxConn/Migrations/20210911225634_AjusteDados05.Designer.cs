@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd_FoxConn.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210910020608_Initial")]
-    partial class Initial
+    [Migration("20210911225634_AjusteDados05")]
+    partial class AjusteDados05
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,9 +19,9 @@ namespace BackEnd_FoxConn.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.9");
 
-            modelBuilder.Entity("BackEnd_FoxConn.Models.Employee", b =>
+            modelBuilder.Entity("BackEnd_FoxConn.Models.Employees", b =>
                 {
-                    b.Property<int>("employeeId")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -34,9 +34,6 @@ namespace BackEnd_FoxConn.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Id_rule")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Modified_at")
                         .HasColumnType("datetime(6)");
 
@@ -44,13 +41,16 @@ namespace BackEnd_FoxConn.Migrations
                         .HasMaxLength(104)
                         .HasColumnType("varchar(104)");
 
+                    b.Property<int>("RuleId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("RulesRuleId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(8,2)");
 
-                    b.HasKey("employeeId");
+                    b.HasKey("EmployeeId");
 
                     b.HasIndex("RulesRuleId");
 
@@ -72,7 +72,7 @@ namespace BackEnd_FoxConn.Migrations
                     b.Property<DateTime>("Modified_at")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameRule")
                         .HasMaxLength(54)
                         .HasColumnType("varchar(54)");
 
@@ -81,10 +81,10 @@ namespace BackEnd_FoxConn.Migrations
                     b.ToTable("Rules");
                 });
 
-            modelBuilder.Entity("BackEnd_FoxConn.Models.Employee", b =>
+            modelBuilder.Entity("BackEnd_FoxConn.Models.Employees", b =>
                 {
                     b.HasOne("BackEnd_FoxConn.Models.Rules", "Rules")
-                        .WithMany("Employee")
+                        .WithMany("Employees")
                         .HasForeignKey("RulesRuleId");
 
                     b.Navigation("Rules");
@@ -92,7 +92,7 @@ namespace BackEnd_FoxConn.Migrations
 
             modelBuilder.Entity("BackEnd_FoxConn.Models.Rules", b =>
                 {
-                    b.Navigation("Employee");
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

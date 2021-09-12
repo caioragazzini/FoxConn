@@ -1,1 +1,76 @@
-<p>create works!</p>
+<div class="container">
+    <h1> Novo Funcionario</h1>  
+    <br>    
+        <a href="#" routerLink="/employee/index" class="btn btn-primary">Back</a>
+        <br>
+        <br>
+    <form class="container" [formGroup]="form" (ngSubmit)="submit()">
+  
+        <div class="form-group campo">
+         
+            <label for="name">Nome:</label>
+            <input 
+                formControlName="name"
+                id="name" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                <div *ngIf="f.name.errors?.required">nome is required.</div>
+            </div>
+        </div>  
+        <div class="form-group campo">
+            <label for="salary">Salario:</label>
+            <input 
+                formControlName="salary"
+                id="salary" 
+                type="number"
+                class="form-control">    
+                <div *ngIf="f.salary.touched && f.salary.invalid" class="alert alert-danger">
+                    <div *ngIf="f.salary.errors?.required">nome is required.</div>
+                </div>        
+        </div>
+       
+        <div class="form-group campo">
+            <label for="ruleId">Departamento:</label>
+            <select  class="form-control" formControlName="ruleId">   
+                <option disabled value="">Selecione um Departamento</option>  
+                         
+                <option *ngFor="let rule of allRules | async" 
+                [ngValue]="rule.ruleId">{{rule.nameRule}}</option>
+                
+          </select>                 
+        </div> 
+
+        <div class="form-group campo">
+            <label for="gender">Sexo:</label>
+            <select  class="form-control" formControlName="gender">   
+                <option disabled value="">Selecione</option>             
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>                 
+        </div>   
+        <div class="form-group campo">
+            <label for="active">Ativo/Inativo:</label>
+            <select  class="form-control" formControlName="active">  
+                <option disabled value="">Selecione</option>              
+                <option  value="A" >Ativo</option>
+                <option  value="I" >Inativo</option>              
+          </select>                 
+        </div>   
+
+        <div class="form-group">
+            <label for="descricao">Descricão:</label>
+            <textarea 
+            class="form-control"
+             rows="3" 
+             name="descricao" 
+             id="descricao" 
+             formControlName="descricao">
+            </textarea>
+          </div>        
+        <br>
+        <div class="direita">
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        </div>
+    </form>
+</div>

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEnd_FoxConn.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AjusteDados04 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,7 +34,7 @@ namespace BackEnd_FoxConn.Migrations
                 name: "Employee",
                 columns: table => new
                 {
-                    employeeId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(104)", maxLength: 104, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -45,12 +45,12 @@ namespace BackEnd_FoxConn.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Modified_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Id_rule = table.Column<int>(type: "int", nullable: false),
-                    RulesRuleId = table.Column<int>(type: "int", nullable: true)
+                    RulesRuleId = table.Column<int>(type: "int", nullable: true),
+                    RuleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employee", x => x.employeeId);
+                    table.PrimaryKey("PK_Employee", x => x.EmployeeId);
                     table.ForeignKey(
                         name: "FK_Employee_Rules_RulesRuleId",
                         column: x => x.RulesRuleId,
