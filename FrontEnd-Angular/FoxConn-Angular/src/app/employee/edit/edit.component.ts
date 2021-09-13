@@ -17,56 +17,41 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-
-  
+ 
   id!: number;
   post!: Employee;
   form!: FormGroup;
-  categoriaFind!: Observable<Rule>; 
   allRules!: Observable<Rule[]>; 
   rules!:Rule;
- 
-  nrSelect: any;
-  nractive:any;
-  nrgender:any;
-   
   
   constructor(
     public postService: EmployeeService,
     private router: Router,    
     private route: ActivatedRoute,
-    public Service: RuleService
-    
+    public Service: RuleService    
   ) { }
-  
 
-  
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.postService.find(this.id).subscribe((data: Employee)=>{
-      this.post = data;
-       
-     
+      this.post = data;    
     });   
     
     this.loadAllRules();
         
     this.form = new FormGroup({
-      id:  new FormControl(),
+    id:  new FormControl(),
     name: new FormControl('', [Validators.required]),
     salary: new FormControl('', [Validators.required]),
     gender: new FormControl(),
     active: new FormControl(),
-    created_at: new FormControl(),
-    
+    created_at: new FormControl(),    
     ruleId: new FormControl(this.rules),         
     });
-  
 
-  }
+    }
  
-  loadAllRules() {  
-    
+  loadAllRules() {      
     this.allRules = this.Service.getRules();  
   } 
 

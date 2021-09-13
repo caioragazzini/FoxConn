@@ -29,8 +29,8 @@ namespace BackEnd_FoxConn.Repository.EmployeeRepository
             foreach (var lista in sql)
             {
                 EmployeeRulesDTO employeeRulesDTO = new EmployeeRulesDTO();
-                employeeRulesDTO.Nome = lista.Nome;
-                employeeRulesDTO.Salary = lista.Salary.ToString();
+                employeeRulesDTO.arg = lista.Nome;
+                employeeRulesDTO.val = lista.Salary.ToString();
                 sqlLista.Add(employeeRulesDTO);
             }
 

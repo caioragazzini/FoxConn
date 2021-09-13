@@ -23,9 +23,11 @@ namespace BackEnd_FoxConn.Controllers
         }
 
         [HttpGet("salarioDepartamento")]
-        public ActionResult<IEnumerable<EmployeeRulesDTO>> GetC()
-        {
-            var employee = _uow.EmployeeBll.GetSalaryDepartament().ToList();           
+        public ActionResult<IEnumerable<EmployeeRulesDTO>> GetSalario()
+        {    
+            
+            var employee = _uow.EmployeeBll.GetSalaryDepartament().ToList(); 
+           
 
             return employee;
         }

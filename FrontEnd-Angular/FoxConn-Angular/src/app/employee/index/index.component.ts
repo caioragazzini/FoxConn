@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Employee } from 'src/app/model/employee';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../employee.service';
@@ -9,12 +9,13 @@ import { EmployeeService } from '../employee.service';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit { 
 
   EmployeeForm: any;  
   allEmployee!: Observable<Employee[]>;  
   posts: Employee[] = [];
   searchText: any;
+  
 
   constructor( private Service:EmployeeService) { }
  

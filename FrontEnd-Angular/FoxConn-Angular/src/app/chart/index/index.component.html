@@ -1,0 +1,22 @@
+
+<h4 style="text-align:center"> Total de Sálario por Departamento
+    <br/><br/>  
+    </h4><br/>
+  <div>
+    <dx-chart
+    id="chart"
+    title=""
+    [dataSource]="posts"
+>
+    <dxo-legend [visible]="false"></dxo-legend>
+    <dxi-series type="bar"></dxi-series>
+    <dxo-argument-axis [tickInterval]="10">
+        <dxo-label>
+            <dxo-format type="dataSource"></dxo-format>
+        </dxo-label>
+    </dxo-argument-axis>
+</dx-chart>
+  
+  
+  </div>
+

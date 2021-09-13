@@ -8,8 +8,8 @@ namespace BackEnd_FoxConn.DTOs
     public class EmployeeRulesDTO
     {
 
-        public string Nome { get; set; }
+        public string arg { get; set; }
 
-        public string Salary { get; set; }
+        public string val { get; set; }
     }
 }
