@@ -1,13 +1,8 @@
 <div class="container">
     <h1> Editar Funcionario</h1>  
     <br>    
-        <a href="#" routerLink="/employee/index" class="btn btn-primary">Back</a>
-        <br>
-        <br>
-    <form class="container" [formGroup]="form" (ngSubmit)="submit()">
-  
-       
-          
+              
+    <form class="container" [formGroup]="form" (ngSubmit)="submit()">         
          <div class="form-group campo">         
             <label for="name">Nome:</label>
             
@@ -66,12 +61,14 @@
                 [(ngModel)]="post.created_at">
            
         </div>
+      
+        <div class="btn-toolbar">
         
-        
-        <br>
-        <div class="direita">
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
-        </div>
+          <button class="btn btn-secondary">Cancelar</button>
+         <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Editar</button>
+    
+    </div>
+
     </form>
 </div>
 

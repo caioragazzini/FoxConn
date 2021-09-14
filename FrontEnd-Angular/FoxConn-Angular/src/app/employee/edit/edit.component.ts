@@ -6,11 +6,9 @@ import { Employee } from 'src/app/model/employee';
 import { Rule } from 'src/app/model/rule';
 import { EmployeeService } from '../employee.service';
 import { RuleService } from 'src/app/rule/rule.service';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { formatDate } from '@angular/common';
-
+ 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
