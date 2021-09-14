@@ -4,8 +4,8 @@ Crud Departamento-Funcionario
 ## Descrição do Projeto
 <p align="left">
 	Sistema projetado:
-	<p>- BackEnd (BackEnd-FoxConn): WebApi desenvolvida em .NET Core, utilizando a linguagem C#, Entity Framework Core Dapper Bancos relacionais MYSQL, Entidades criadas utilizando Code First, seguindo os padrões REST na construção das rotas e retornos e documentação utilizando Swagger)</p>
-	<p>-FrontEnd (FoxConn-Angular): desenvolvida em Angular Application .Net Framework 4.7.2, utilizando a linguagem C#</p>
+	<p>- BackEnd (BackEnd-FoxConn): WebApi desenvolvida em .NET Core, utilizando a linguagem C#, Entity Framework Core Dapper Bancos relacionais MYSQL, Entidades criadas utilizando Code First, seguindo os padrões REST na construção das rotas e retornos, padrão Reposytory e Unit Of Work e documentação utilizando Swagger)</p>
+	<p>-FrontEnd (FoxConn-Angular): desenvolvida em Angular Angular: 12.2.5, typescript 4.3.5</p>
 	
 ### Features
 Back End
