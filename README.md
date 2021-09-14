@@ -95,7 +95,7 @@ COMMIT;
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/caioragazzini/Foxx-Conn.git>
+$ git clone <https://github.com/caioragazzini/FoxConn.git>
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd nlw1
