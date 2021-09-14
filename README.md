@@ -125,14 +125,14 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Entity Framework Migrations
 - Entity Framework Core Dapper Bancos relacionais MySQL 
 - Swagger
--Angular: 12.2.5
--@angular-devkit/architect       0.1202.5
--@angular-devkit/build-angular   12.2.5
--@angular-devkit/core            12.2.5
--@angular-devkit/schematics      12.2.5
--@schematics/angular             12.2.5
--rxjs                            6.6.7
--typescript                      4.3.5
+- Angular: 12.2.5
+- @angular-devkit/architect       0.1202.5
+- @angular-devkit/build-angular   12.2.5
+- @angular-devkit/core            12.2.5
+- @angular-devkit/schematics      12.2.5
+- @schematics/angular             12.2.5
+- rxjs                            6.6.7
+- typescript                      4.3.5
 
 
 Autor
