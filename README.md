@@ -39,6 +39,8 @@ Package                         Version
 rxjs                            6.6.7
 typescript                      4.3.5
 
+Script de DDL MySql
+---------------------------------------------------------
 script de DDL MySql
 CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
     `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
