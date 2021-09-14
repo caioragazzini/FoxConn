@@ -24,9 +24,7 @@ Front End
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 - Visual Studio 2019
 - MySql 
-OS: win32 x64
-
-Angular: 12.2.5
+- Angular: 12.2.5
 ... animations, cdk, cli, common, compiler, compiler-cli, core
 ... forms, material, platform-browser, platform-browser-dynamic
 ... router
