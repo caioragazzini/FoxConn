@@ -119,7 +119,7 @@ $ npm run dev:server
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Microsoft Visual Studio](https://expo.io/)
+- [Microsoft Visual Studio 2019](https://expo.io/)
 - .Net Framework 4.7.2
 - .NET Core
 - Entity Framework Migrations
